@@ -1,0 +1,26 @@
+section .text
+        global _start
+
+_foobar:
+        push ebp
+        mov ebp, esp
+        mov eax, dword [ebp+8]  ; Load x into eax
+        add eax, dword [ebp+12] ;
+        add eax, dword [ebp+16];
+        mov dword [ebp-4], eax  ;
+    mov esp, ebp
+    pop ebp
+    ret
+_start:
+    push dword [z]
+    push dword [y]
+    push dword [x]
+    call _foobar
+    add esp, 12  ;
+
+    mov eax, 1    ;
+     int 0x80    ;
+section .data
+    x dd 5
+    y dd 10
+    z dd 15
